@@ -1,7 +1,7 @@
 // English. Made Fun. service worker: network first, so students always get the newest version
 // when they are online; the last saved copy is used only when they are offline.
-const CACHE='emf-202610041538';
-const FILES=['./','./index.html','./manifest.webmanifest','./apple-touch-icon.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png'];
+const CACHE='emf-202610041624';
+const FILES=['./','./index.html','./manifest.webmanifest','./apple-touch-icon.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./atkinson-hyperlegible-latin-400-normal.woff2','./atkinson-hyperlegible-latin-700-normal.woff2','./bricolage-grotesque-latin-600-normal.woff2','./bricolage-grotesque-latin-800-normal.woff2'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).catch(()=>{}));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{
