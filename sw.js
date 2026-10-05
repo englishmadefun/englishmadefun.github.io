@@ -2,7 +2,7 @@
 // when they are online; the last saved copy is used only when they are offline.
 // Downloadable files (files/*.bin) never change once published (the name is a fingerprint of the bytes),
 // so they are served from their own cache first: saving a handout works offline too.
-const CACHE='emf-202610050613', FCACHE='emf-files';
+const CACHE='emf-202610050651', FCACHE='emf-files';
 const FILES=['./','./index.html','./manifest.webmanifest','./apple-touch-icon.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./atkinson-hyperlegible-latin-400-normal.woff2','./atkinson-hyperlegible-latin-700-normal.woff2','./bricolage-grotesque-latin-600-normal.woff2','./bricolage-grotesque-latin-800-normal.woff2'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).catch(()=>{}));});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE&&k!==FCACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
